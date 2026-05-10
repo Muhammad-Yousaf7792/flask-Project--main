@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daraz Price Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Daraz Price Tracker</h1>
+    <form method="POST">
+        <input type="text" name="url" placeholder="Daraz Product URL" required>
+        <button type="submit">Add Product</button>
+    </form>
+    <h2>Tracked Products</h2>
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Price</th><th>History</th></tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td><a href="{{ url_for('history', product_id=product.id) }}">View History</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
